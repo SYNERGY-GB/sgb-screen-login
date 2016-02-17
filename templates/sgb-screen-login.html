@@ -1,76 +1,38 @@
-<ion-view mz-screen view-title="{{ title | translate }}"  hide-nav-bar="true" class="app-background">
-    <ion-content class="myPadding">
-		<!--Welcome title-->
-		<div ng-show="data.screenTitle" class="text-center">
-		    <h2> {{data.screenTitle}} </h2>
-		</div>
-
-		<div class="push-content">
-		    <!--Welcome image-->
-		    <div class="text-center padding" ng-show="data.welcomeMessage" style="margin-bottom: 2em">
-		        <h3 class="thick"> {{data.welcomeMessage}} </h3>
-		    </div> 
-
-		    <!-- Login input -->
-		    <div class="main-background text-center">
-
-		        <!-- Username -->
-		        <div class="row item-input app-input pwd-background item-icon-right"> 
-		            <div class="col col-offset-20 col-75">
-		                <input type="text" data-ng-model="login.username"
-		                	   ng-change="checkUsername(login.username,_screenParams.usernameValidation)"
-		                       placeholder="{{'login_username' | translate}}" />
-		            </div>
-		            <i class="icon ion-checkmark" ng-show="userIcon===true"></i>
-		            <i class="icon ion-close-round" ng-show="userIcon===false"></i>
+<ion-view mz-screen view-title="{{ params.title | translate }}">
+    <ion-content class="backgroundLogin">
+        <!--Welcome image-->
+	    <img ng-src="{{params.welcomeResource}}" class="welcome-image full-image">
+		<div class="contentForm">
+		<div class="input-background">
+	       <form novalidate name="userForm">
+		        <div class="item-input item-icon-right paddingLogin"> 
+	                <input id="styleInputLogin" type="text" data-ng-model="login.username" name="username" required ng-pattern"params.usernameValidation" placeholder="{{'login_username' | translate}}" /> 
+	   				<i class="icon ion-checkmark" ng-show="userForm.username.$valid"></i>
+	                <i class="icon ion-close-round" ng-show="userForm.username.$invalid && !userForm.username.$error.required"></i>
 		        </div>
-		        <br/>
 		        <!-- Password -->
-		        <div class="row item-input app-input pwd-background item-icon-right" >
-		            <div class="col col-offset-20 col-75">
-		                <input type="password" data-ng-model="login.password" 
-		                		ng-change="checkPassword(login.password,_screenParams.passwordValidation)"
-		                        placeholder="{{'login_password' | translate}}" />
-		            </div>
-		            <i class="icon ion-checkmark" ng-show="passwordIcon===true"></i>
-		            <i class="icon ion-close-round" ng-show="passwordIcon===false"></i>
+		        <div class="item-input app-input item-icon-right paddingLogin">
+	                <input id="styleInputLogin" type="password" data-ng-model="login.password" name="password" required ng-pattern="params.passwordValidation" placeholder="{{'login_password' | translate}}" />
+	  				<i class="icon ion-checkmark" ng-show="userForm.password.$valid"></i>
+	                <i class="icon ion-close-round" ng-show="userForm.password.$invalid && !userForm.password.$error.required"></i>
 		        </div>
-		        <br/>
-		  
-		        <!-- Login button -->    
-		        <div class="row app-input login-button-background" data-ng-click="doLogin()"
-		             ng-class="{'opaque-button' : !formValidated() && _screenParams.onScreenValidation}">
-		            <div class="col col-80 text-right">
-		               <p style="margin-top:0.3em"> {{'login_login' | translate}} </p>
-		            </div>  
-		        </div>
-		   
-		    
-		        <!-- Optional clean fields button"-->
-		        <div class="row" ng-show="_screenParams.clearSubmitButtons">
-		            <button class="button button-block button-positive" type="button" 
-		                    data-ng-click="clearFields()" translate="login_clear">
-		            </button>
-		        </div>
-
-		        <!--Optional forgot password -->
-		        <div class="center-text forgotpwd-text" ng-show="_screenParams.forgotPassword" style="margin-top:2em">
-		            <p class="wrap" ng-click="forgotPass()"> {{'login_forgot_password' | translate}} </p>
-		        </div>
-		      
-		        <!--Optional remember me toggle -->
-		        <div class="item item-toggle" ng-show="_screenParams.rememberMe"> 
-		            {{'login_keep_session' | translate}}
-		            <div class="toggle toggle-balanced">
-		                <input type="checkbox" ng-model="keepSession">
-		                <div class="track">
-		                    <div class="handle"></div>
-		                </div>
-		            </div>
-		        </div>
-
+		    </form>
+		    <!--buttons-->    
+		        <div class="row rowLoginPosition">
+			        <div class="col col-50 buttonLogin1"> 
+				        <div class="button buttonLogin button-positive" data-ng-click="clearFields()">
+				            <p>{{'Clean' | translate}}</p>
+			        	</div>
+		        	</div>
+		        	<div class="col col-50 buttonLogin2"> 
+			        	<div class="button buttonLogin button-balanced" data-ng-click="userForm.$valid  	&& doLogin()">
+			               <p>{{'Submit' | translate}}</p> 
+				    	</div>
+		    		</div>
+		    	</div>	
 		    </div> 
 		</div>
-
     </ion-content>
+
+	<img ng-src="{{params.companyResource}}" class="fix-content-bottom company-logo"/>
 </ion-view>

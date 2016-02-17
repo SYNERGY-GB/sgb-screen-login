@@ -1,1 +1,39 @@
-//@include 'stash'; 
+.contentForm{
+    margin: 1em 1em 1em 1em;
+    background-color: rgba(188, 229, 235, 0.27);;
+    border-radius: 5px;
+}
+
+#styleInputLogin{
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 0;
+    padding-left: 1em;
+    margin: 0.6em;
+}
+
+.topLogin{
+    top: 1em;
+}
+
+.paddingLogin{
+    padding:0;
+}
+
+.rowLoginPosition{
+    margin: auto;
+    text-align: center
+}
+
+.buttonLogin1{
+    text-align: right;
+}
+
+.buttonLogin2{
+    text-align: left;
+}
+
+.buttonLogin{
+    height: 1em;
+    width: 6em;
+}
